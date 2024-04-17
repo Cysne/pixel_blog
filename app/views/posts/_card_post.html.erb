@@ -1,0 +1,10 @@
+<div class="card single_post">
+  <div class="body">
+    <%@posts.each do |p|%>
+      <div class="img-post">
+        <%= image_tag(p.image, class: "d-block img-fluid") if p.image.present? %>      </div>
+      <h3><%=p.title%></h3>
+      <p><%=p.content%></p>
+    <%end%>
+  </div>
+</div>
