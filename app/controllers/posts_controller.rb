@@ -2,13 +2,17 @@
 
 # controller de posts
 class PostsController < ApplicationController
+  include Pundit::Authorization
+
   before_action :set_post, only: %i[show edit update destroy]
   # before_action :authenticate_user!, only: %i[new create]
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @post = Post.find(params[:id])
+  end
 
   def new
     @post = Post.new
@@ -16,27 +20,32 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    debugger
     if @post.save
-      redirect_to @post, notice: 'Post foi criado com sucesso.'
+      redirect_to posts_path, notice: 'Post foi criado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit; end
+  def edit
+    @post = Post.find(params[:id])
+    authorize @post
+  end
 
   def update
+    authorize @post
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post foi atualizado com sucesso.'
+      redirect_to posts_path, notice: 'Post foi atualizado com sucesso.'
     else
       render :edit
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_to root_path, status: :see_other, notice: 'Post foi deletado com sucesso.'
+    authorize @post
+    @post = Post.find(params[:id])
+    @post.destroyed_by_association
+    redirect_to posts_path, notice: 'Post foi deletado com sucesso.'
   end
 
   private

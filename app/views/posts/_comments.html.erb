@@ -1,13 +1,22 @@
-<ul class="comment-reply list-unstyled">
-  <li class="row clearfix">
-    <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-    <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-      <h5 class="m-b-0">Gigi Hadid </h5>
-      <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
-      <ul class="list-inline">
-        <li><a href="javascript:void(0);">Mar 09 2018</a></li>
-        <li><a href="javascript:void(0);">Reply</a></li>
-      </ul>
-    </div>
-  </li>
-</ul>
+<div class="card">
+  <div class="header">
+    <h2>comentários <%= post.comment_threads.count %></h2>
+  </div>
+  <div class="body">
+    <ul class="comment-reply list-unstyled">
+      <% post.comment_threads.each do |comment| %>
+        <li class="row clearfix">
+          <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
+          <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+            <h5 class="m-b-0"><%= comment.user ? comment.user.nome : 'Anônimo' %></h5>
+            <p><%=comment.body%></p>
+            <ul class="list-inline">
+              <li><span><%=comment.created_at.strftime('%d/%m/%Y %H:%M:%S')%></span></li>
+              <li><a href="javascript:void(0);">Reply</a></li>
+            </ul>
+          </div>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>

@@ -2,6 +2,6 @@
   <%= f.input :title, label: 'Título', placeholder: 'Insira o título aqui', hint: 'O título do post.' %>
   <%= f.input :content, label: 'Conteúdo', placeholder: 'Insira o conteúdo aqui', hint: 'O conteúdo do post.' %>
   <%= f.input :image, label: 'Imagem', hint: 'A imagem do post.' %>
-  <%= f.input :tag_ids, as: :select, collection: Tag.all, label_method: :name, value_method: :id, include_blank: 'Selecione as tags', input_html: { multiple: true } %>
-  <%= f.button :submit %>
+  <%= f.association :tags, collection: Tag.all, as: :check_boxes, label_method: :name, value_method: :id, label: 'Tags', hint: 'As tags do post.', include_hidden: false %>
+  <%= f.submit @post.new_record? ? 'Criar Post' : 'Atualizar Post', class: 'btn btn-secondary' %>
 <% end %>

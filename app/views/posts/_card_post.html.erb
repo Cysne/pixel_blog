@@ -1,10 +1,19 @@
-<div class="card single_post">
-  <div class="body">
-    <%@posts.each do |p|%>
+<% @posts.each do |p| %>
+  <div class="card single_post">
+    <div class="body ">
       <div class="img-post">
-        <%= image_tag(p.image, class: "d-block img-fluid") if p.image.present? %>      </div>
-      <h3><%=p.title%></h3>
-      <p><%=p.content%></p>
-    <%end%>
-  </div>
+        <%= image_tag(p.image, class: "d-block img-fluid") if p.image.present? %>
+      </div>
+      <h3><%= p.title %></h3>
+      <p><%= p.content %></p>
+      <%= render 'comments', post: p %>
+      <%= render 'form_comments', post: p %>
+      <%if policy(p).edit? %>
+        <%= link_to 'Editar Post', edit_post_path(p), class: "btn btn-secondary p-2" %>
+      <%end%>
+      <%if policy(p).destroy? %>
+        <%= button_to 'Eliminar Post', post_path(p), method: :delete, data: { confirm: 'Você tem certeza?', sweet_alert: true }, class: "btn btn-danger" %>
+      <%end%>
+    </div>
+  <% end %>
 </div>

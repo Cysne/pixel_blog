@@ -3,33 +3,18 @@
     <div class="row clearfix">
       <div class="col-lg-8 col-md-12 left-box">
         <%= render 'card_post'%>
-        <div class="card">
-          <div class="header">
-            <h2>Comments 3</h2>
-          </div>
-          <div class="body">
-            <%= render 'comments'%>
-          </div>
-        </div>
-        <div class="card">
-          <div class="header">
-            <h2>Leave a reply <small>Your email address will not be published. Required fields are marked*</small></h2>
-          </div>
-          <%render 'form_comments'%>
-        </div>
       </div>
       <div class="col-lg-4 col-md-12 right-box">
         <div class="card">
-          <div class="body search">
-            <div class="input-group m-b-0">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-search"></i></span>
+          <% if policy(Post).create? %>
+            <div class="body search">
+              <div class="input-group m-b-0">
               </div>
-              <input type="text" class="form-control" placeholder="Search...">
+              <%= link_to 'Escreva um Post', new_post_path, class: 'btn btn-primary' %>
             </div>
-          </div>
+          <% end %>
         </div>
-        <div class="card">
+        <div class="card mt-2">
           <div class="header">
             <h2>Tags</h2>
           </div>

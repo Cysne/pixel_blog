@@ -132,10 +132,6 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.0.1)
-      actionpack (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.7.2)
     irb (1.12.0)
       rdoc
@@ -145,6 +141,18 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     kind (5.10.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -180,6 +188,8 @@ GEM
     public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
+    pundit (2.3.1)
+      activesupport (>= 3.0.0)
     racc (1.7.3)
     rack (3.0.10)
     rack-session (2.0.0)
@@ -296,11 +306,12 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
-  importmap-rails
   jbuilder
   jsbundling-rails (~> 1.3)
+  kaminari
   pg (~> 1.5)
   puma (>= 5.0)
+  pundit
   rails (~> 7.1.3, >= 7.1.3.2)
   sass-rails
   selenium-webdriver
