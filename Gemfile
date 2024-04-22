@@ -56,7 +56,6 @@ group :development do
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
-  gem 'dotenv-rails', groups: %i[development test]
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
@@ -86,7 +85,7 @@ gem 'pundit'
 
 gem 'kaminari'
 
-gem 'sidekiq'
+gem 'dotenv-rails'
 
 gem 'actiontext'
 
@@ -95,3 +94,7 @@ gem 'dockerfile-rails', '>= 1.6', group: :development
 gem 'redis', '~> 5.2'
 
 gem 'pg'
+
+gem 'execjs'
+gem 'mini_racer'
+gem 'sidekiq'
