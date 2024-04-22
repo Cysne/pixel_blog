@@ -1,0 +1,6 @@
+development:
+  queue: default
+  redis: localhost:6379
+production:
+  queue: default
+  redis: <%= ENV['REDIS_URL'] %>
