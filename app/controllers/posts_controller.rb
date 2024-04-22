@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: 'Post foi criado com sucesso.'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to posts_path, alert: 'Post não foi criado com sucesso.'
     end
   end
 
@@ -61,12 +61,12 @@ class PostsController < ApplicationController
   end
 
   def upload_posts_file
-    result = Post::UploadPostsFile.call(file: params[:file], user_id: current_user.id)
-
-    if result.success?
-      redirect_to posts_path, notice: result[:message]
+    if params[:file].present?
+      file_content = params[:file].read
+      PostsCreationJob.perform_async(current_user.id, file_content)
+      redirect_to posts_path, notice: 'Arquivo enviado com sucesso.'
     else
-      redirect_to posts_path, alert: result[:message]
+      redirect_to posts_path, alert: 'Por favor, selecione um arquivo para enviar.'
     end
   end
 
