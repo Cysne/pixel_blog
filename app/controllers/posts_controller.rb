@@ -7,7 +7,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   # before_action :authenticate_user!, only: %i[new create]
   def index
-    @posts = Post.page(params[:page]).per(5).order(created_at: :desc)
+    if params[:tag]
+      @tag = Tag.find_by(name: params[:tag])
+      @posts = @tag ? @tag.posts.order(created_at: :desc).page(params[:page]).per(3) : Post.none
+    else
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
+    end
+    return unless @posts
+
+    @popular_post = @posts.max_by { |post| post.comment_threads.size }
   end
 
   def show
@@ -44,8 +52,22 @@ class PostsController < ApplicationController
   def destroy
     authorize @post
     @post = Post.find(params[:id])
-    @post.destroyed_by_association
-    redirect_to posts_path, notice: 'Post foi deletado com sucesso.'
+    @post.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post foi deletado com sucesso.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def upload_posts_file
+    result = Post::UploadPostsFile.call(file: params[:file], user_id: current_user.id)
+
+    if result.success?
+      redirect_to posts_path, notice: result[:message]
+    else
+      redirect_to posts_path, alert: result[:message]
+    end
   end
 
   private

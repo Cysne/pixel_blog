@@ -1,14 +1,10 @@
-<div class="body widget">
+<div class="body widget" id="tag-list">
   <ul class="list-unstyled categories-clouds m-b-0">
-    <li><a href="javascript:void(0);">Hqs</a></li>
-    <li><a href="javascript:void(0);">Animes</a></li>
-    <li><a href="javascript:void(0);">Games</a></li>
-    <li><a href="javascript:void(0);">Consoles</a></li>
-    <li><a href="javascript:void(0);">Xbox</a></li>
-    <li><a href="javascript:void(0);">Sony</a></li>
-    <li><a href="javascript:void(0);">Livros</a></li>
-    <li><a href="javascript:void(0);">Filmes</a></li>
-    <li><a href="javascript:void(0);">Series</a></li>
-    <li><a href="javascript:void(0);">E-sports</a></li>
+    <% Tag.paginated(params[:page]).each do |tag| %>
+      <li>
+        <%= link_to tag.name, posts_path(tag: tag.name), remote: true %>
+      </li>
+    <% end %>
   </ul>
+  <%= paginate Tag.paginated(params[:page]), remote: true %>
 </div>

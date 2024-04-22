@@ -43,7 +43,7 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -66,10 +66,8 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
-
-gem 'pg', '~> 1.5'
-
 gem 'acts_as_commentable_with_threading'
+
 gem 'devise'
 
 gem 'jsbundling-rails', '~> 1.3'
@@ -87,3 +85,13 @@ gem 'simple_form'
 gem 'pundit'
 
 gem 'kaminari'
+
+gem 'sidekiq'
+
+gem 'actiontext'
+
+gem 'dockerfile-rails', '>= 1.6', group: :development
+
+gem 'redis', '~> 5.2'
+
+gem 'pg'

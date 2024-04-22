@@ -10,7 +10,21 @@
             <div class="body search">
               <div class="input-group m-b-0">
               </div>
-              <%= link_to 'Escreva um Post', new_post_path, class: 'btn btn-primary' %>
+              <%= link_to 'Escreva um Post', new_post_path, class: 'nes-btn is-primary' %>
+              <div>
+                <h4>Ou Importe um ou mais posts</h4>
+                <div class="mt-2 mb-4">
+                  <p class= "mt-2">
+                    <%= link_to "Baixe o modelo", download_model_path, class:'nes-btn is-primary' %>
+                  </p>
+                  <h4> Antes de importar faça o download do modelo acima e preencha com os dados dos posts.</h4>
+                  <%= form_with(url: upload_posts_file_path, method: :post, local: true, multipart: true) do |form| %>
+                    <label  class="nes-btn">
+                      <span>Importar Posts</span>
+                      <%= form.file_field :file, onchange: 'this.form.submit();', class: 'd-none', title: 'Escolha o arquivo' %>                    </label>
+                  <% end %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
@@ -22,53 +36,18 @@
         </div>
         <div class="card">
           <div class="header">
-            <h2>Popular Posts</h2>
+            <h2>Post mais popular</h2>
           </div>
           <div class="body widget popular-post">
             <div class="row">
               <div class="col-lg-12">
-                <div class="single_post">
-                  <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                  <span>jun 22, 2018</span>
-                </div>
-                <div class="single_post">
-                  <p class="m-b-0">new rules, more cars, more races</p>
-                  <span>jun 8, 2018</span>
-                  <div class="img-post">
-                    <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">
+                <% if @popular_post %>
+                  <div class="single_post">
+                    <p class="m-b-0"><%= @popular_post.title %></p>
+                    <span><%= @popular_post.created_at.strftime('%b %d, %Y')%></span>
+                    <p>Este post tem <%= @popular_post.comment_threads.size %> comentários e é o mais comentado.</p>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="header">
-            <h2>Instagram Post</h2>
-          </div>
-          <div class="body widget">
-            <ul class="list-unstyled instagram-plugin m-b-0">
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-              <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="header">
-            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-          </div>
-          <div class="body widget newsletter">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enter Email">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="icon-paper-plane"></i></span>
+                <%end%>
               </div>
             </div>
           </div>
@@ -76,4 +55,7 @@
       </div>
     </div>
   </div>
+  <% unless @posts.empty? %>
+    <%= paginate @posts %>
+  <% end %>
 </div>

@@ -1,18 +1,21 @@
-<h2>Log in de Usuario</h2>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
+<div class="card single_post">
+  <h2>Log in de Usuario</h2>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email,
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
+      <%= f.input :password,
                 :label => "Senha",
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Log in", class:'btn-secondary'%>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <%= f.button :submit, "Log in", class:'nes-btn is-primary'%>
+    </div>
+    <%= render "devise/shared/links" %>
+  <% end %>
+</div>
+</div>

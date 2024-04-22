@@ -1,5 +1,5 @@
-<div class="container">
-  <header class="blog-header lh-1 py-3">
+<div class="container-fluid navbar-light bg-light mb-4 my-div">
+  <header class="blog-header lh-1 py-3 my-navbar">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
         <a class="link-secondary" href="#"></a>
@@ -8,14 +8,11 @@
         <a class="blog-header-logo text-dark" ><%= link_to 'Pixel Blog', root_path, class: 'blog-header-logo text-dark' %></a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="link-secondary" href="#" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-        </a>
         <% if user_signed_in? %>
-          <h6>Bem vindo!</h6>
+          <h6 >Bem vindo!</h6>
           <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.nome %>
+              <%= current_user.username%>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li><%= link_to 'Perfil', edit_user_registration_path	, class: 'dropdown-item' %></li>
@@ -23,8 +20,10 @@
             </ul>
           </div>
         <% else %>
-          <%= link_to 'Entrar', new_user_session_path, class:'btn btn-sm btn-outline-secondary' %>
-          <%= link_to 'Registre-se', new_user_registration_path, class:'btn btn-sm btn-outline-secondary' %>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <%= link_to 'Entrar', new_user_session_path, class:'btn btn-sm btn-outline-secondary' %>
+            <%= link_to 'Registre-se', new_user_registration_path, class:'btn btn-sm btn-outline-secondary' %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -34,12 +33,11 @@
       <a class="p-2 link-secondary" href="#"></a>
       <a class="p-2 link-secondary" href="#"></a>
       <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#">Campeões</a>
-      <a class="p-2 link-secondary" href="#">Notícias</a>
-      <a class="p-2 link-secondary" href="#">Leaks</a>
-      <a class="p-2 link-secondary" href="#">Teamfight Tactics</a>
-      <a class="p-2 link-secondary" href="#">Universo</a>
-      <a class="p-2 link-secondary" href="#">Esports</a>
+      <a class="p-2 link-secondary" href="#"></a>
+      <%= link_to 'HQs', posts_path(tag: 'HQs'), class:'p-2 link-secondary' %>
+      <%= link_to 'Games', posts_path(tag: 'Games'), class:'p-2 link-secondary' %>
+      <%= link_to 'E-sports', posts_path(tag: 'E-sports'), class:'p-2 link-secondary' %>
+      <a class="p-2 link-secondary" href="#"></a>
       <a class="p-2 link-secondary" href="#"></a>
       <a class="p-2 link-secondary" href="#"></a>
       <a class="p-2 link-secondary" href="#"></a>

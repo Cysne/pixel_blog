@@ -5,15 +5,23 @@
         <%= image_tag(p.image, class: "d-block img-fluid") if p.image.present? %>
       </div>
       <h3><%= p.title %></h3>
-      <p><%= p.content %></p>
+      <p><%= p.content.body %></p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <h6>Tags do Post:</h6>
+        <% p.tags.each do |tag| %>
+          <span><%= link_to tag.name, posts_path(tag: tag.name), remote: true %></span>
+        <% end %>
+      </div>
       <%= render 'comments', post: p %>
       <%= render 'form_comments', post: p %>
-      <%if policy(p).edit? %>
-        <%= link_to 'Editar Post', edit_post_path(p), class: "btn btn-secondary p-2" %>
-      <%end%>
-      <%if policy(p).destroy? %>
-        <%= button_to 'Eliminar Post', post_path(p), method: :delete, data: { confirm: 'Você tem certeza?', sweet_alert: true }, class: "btn btn-danger" %>
-      <%end%>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <%if policy(p).edit? %>
+          <%= button_to 'Editar Post', edit_post_path(p), class: "nes-btn" %>
+        <%end%>
+        <%if policy(p).destroy? %>
+          <%= button_to "Eliminar Post", p, method: :delete, data: { controller: 'sweet-alert', action: 'click->sweet-alert#confirmDelete', confirm: 'Você tem certeza?', sweet_alert: true }, class: "nes-btn is-error" %>
+        <%end%>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

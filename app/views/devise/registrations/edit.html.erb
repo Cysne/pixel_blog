@@ -1,36 +1,85 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%=f.input :nome,
+<div class="container">
+  <div class="row gutters">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="account-settings">
+            <div class="user-profile">
+              <div class="user-avatar">
+                <i class="<%= current_user.avatar %>"></i>
+              </div>
+              <h5 class="user-name"><%=current_user.nome%></h5>
+              <h6 class="user-email"><%=current_user.email%></h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+      <div class="card h-100">
+        <div class="card-body">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h6 class="mb-2 text-primary">Detalhes do Perfil</h6>
+                <div class="form-group">
+                  <%= f.label :avatar, 'Escolha o seu avatar' %>
+                  <section class="icon-list">
+                    <%= f.radio_button :avatar, 'nes-mario' %><i class="nes-mario"></i>
+                    <%= f.radio_button :avatar, 'nes-ash' %><i class="nes-ash"></i>
+                    <%= f.radio_button :avatar, 'nes-pokeball' %><i class="nes-pokeball"></i>
+                    <%= f.radio_button :avatar, 'nes-bulbasaur' %><i class="nes-bulbasaur"></i>
+                    <%= f.radio_button :avatar, 'nes-charmander' %><i class="nes-charmander"></i>
+                    <%= f.radio_button :avatar, 'nes-squirtle', style:'mar' %><i class="nes-squirtle"></i>
+                    <%= f.radio_button :avatar, 'nes-kirby' %><i class="nes-kirby"></i>
+                  </section>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <%=f.input :nome,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "nome" }%>
-    <%=f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username" }%>
-    <%= f.input :password,
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <%= f.input :email, required: true, autofocus: true %>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                <% end %>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <%= f.input :password,
                 hint: "deixe em branco se você não quer mudar",
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
+              </div>
+            </div>
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <%= f.input :current_password,
                 hint: "precisamos da sua senha atual para confirmar suas alterações",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+              </div>
+            </div>
+            <div class="row gutters">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="text-right">
+                  <%= f.button :submit, "Atualizar dados", class: 'btn btn-secondary' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Update", class: 'btn btn-secondary' %>
-  </div>
-<% end %>
-<h3>Cancel my account</h3>
-<div class="group">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:'btn btn-secondary' %>
-  <%= link_to "Back", :back, class:'btn btn-secondary' %>
 </div>
