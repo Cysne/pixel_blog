@@ -11,15 +11,21 @@
               <div class="input-group m-b-0">
               </div>
               <%= link_to 'Escreva um Post', new_post_path, class: 'nes-btn is-primary' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="card">
+          <% if policy(Post).create? %>
+            <div class="body search">
               <div>
-                <h4>Ou Importe um ou mais posts</h4>
+                <h4 style="font-size: 14px;">Ou Importe um ou mais posts</h4>
                 <div class="mt-2 mb-4">
                   <p class= "mt-2">
                     <%= link_to "Baixe o modelo", download_model_path, class:'nes-btn is-primary' %>
                   </p>
-                  <h4> Antes de importar faça o download do modelo acima e preencha com os dados dos posts.</h4>
+                  <h4 style="font-size: 14px;">Antes de importar faça o download do modelo acima e preencha com os dados dos posts.</h4>
                   <%= form_with(url: upload_posts_file_path, method: :post, local: true, multipart: true) do |form| %>
-                    <label  class="nes-btn">
+                    <label  class="nes-btn is primary">
                       <span>Importar Posts</span>
                       <%= form.file_field :file, onchange: 'this.form.submit();', class: 'd-none', title: 'Escolha o arquivo' %>                    </label>
                   <% end %>

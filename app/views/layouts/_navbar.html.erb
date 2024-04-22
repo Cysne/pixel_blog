@@ -1,13 +1,9 @@
-<div class="container-fluid navbar-light bg-light mb-4 my-div">
-  <header class="blog-header lh-1 py-3 my-navbar">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
-        <a class="link-secondary" href="#"></a>
-      </div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" ><%= link_to 'Pixel Blog', root_path, class: 'blog-header-logo text-dark' %></a>
-      </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to 'Pixel Blog', root_path, class: 'text-white' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <h6 >Bem vindo!</h6>
           <div class="dropdown">
@@ -25,22 +21,15 @@
             <%= link_to 'Registre-se', new_user_registration_path, class:'btn btn-sm btn-outline-secondary' %>
           </div>
         <% end %>
-      </div>
+      </ul>
     </div>
-  </header>
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-      <%= link_to 'HQs', posts_path(tag: 'HQs'), class:'p-2 link-secondary' %>
-      <%= link_to 'Games', posts_path(tag: 'Games'), class:'p-2 link-secondary' %>
-      <%= link_to 'E-sports', posts_path(tag: 'E-sports'), class:'p-2 link-secondary' %>
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-      <a class="p-2 link-secondary" href="#"></a>
-    </nav>
   </div>
-</div>
+</nav>
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Bem vindo ao Pixel Blog!</h1>
+      <p class="lead mb-0">Explorando o Multiverso Geek: Animes, HQs, Games, Consoles e muito mais!</p>
+    </div>
+  </div>
+</header>

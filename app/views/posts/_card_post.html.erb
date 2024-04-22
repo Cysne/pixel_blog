@@ -16,7 +16,7 @@
       <%= render 'form_comments', post: p %>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <%if policy(p).edit? %>
-          <%= button_to 'Editar Post', edit_post_path(p), class: "nes-btn" %>
+          <%= link_to 'Editar Post', edit_post_path(p), class: "nes-btn is-warning" %>
         <%end%>
         <%if policy(p).destroy? %>
           <%= button_to "Eliminar Post", p, method: :delete, data: { controller: 'sweet-alert', action: 'click->sweet-alert#confirmDelete', confirm: 'Você tem certeza?', sweet_alert: true }, class: "nes-btn is-error" %>

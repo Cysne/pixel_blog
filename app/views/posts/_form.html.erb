@@ -1,25 +1,22 @@
 <%= simple_form_for @post do |f| %>
   <div class="d-flex align-items-center">
-    <i class="nes-icon caret-right mr-2"></i>
     <%= f.label :title, class: 'nes-text is-primary' %>
   </div>
   <div>
     <%= f.input :title, label: 'Título', placeholder: 'Insira o título aqui',  label: false %>
   </div>
   <div class="d-flex align-items-center">
-    <i class="nes-icon caret-right mr-2"></i>
     <%= f.label :conteúdo, class: 'nes-text is-primary' %>
   </div>
   <div>
     <%= f.rich_text_area :content %>
   </div>
   <div class="d-flex align-items-center">
-    <i class="nes-icon caret-right mr-2"></i>
     <%= f.label :imagem, class: 'nes-text is-primary' %>
   </div>
   <div>
     <%= f.input :image, label: 'Imagem', hint: 'A imagem do post.', label:false %>
   </div>
   <%= f.association :tags, collection: Tag.all, as: :check_boxes, label_method: :name, value_method: :id, label: 'Tags', hint: 'As tags do post.', include_hidden: false %>
-  <%= f.submit @post.new_record? ? 'Criar Post' : 'Atualizar Post', class: 'nes-btn is-success' %>
+  <%= f.submit @post.new_record? ? 'Criar Post' : 'Atualizar Post', class: 'nes-btn is-success mb-2' %>
 <% end %>

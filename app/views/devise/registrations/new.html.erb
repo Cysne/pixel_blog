@@ -1,4 +1,4 @@
-<div class="card single_post">
+<div class="mt-6">
   <h2>Registre-se</h2>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -24,7 +24,7 @@
                 input_html: { autocomplete: "new-password" } %>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-      <%= f.button :submit, "registre-se", class:'nes-btn is-primary' %>
+      <%= f.button :submit, "registre-se", class:'nes-btn is-success' %>
     <% end %>
     <%= render "devise/shared/links" %>
   </div>

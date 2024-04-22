@@ -10,7 +10,7 @@
             <i class="<%= comment.user&.avatar %>"></i>
           </div>
           <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-            <h5 class="m-b-0" style="margin-left: 10px;"><%= comment.user ? comment.user.nome : 'Anônimo' %></h5>
+            <h5 class="m-b-0" style="margin-left: 10px;"><%= comment.user ? comment.user.username : 'Anônimo' %></h5>
             <p><%=comment.body%></p>
             <ul class="list-inline">
               <li><span><%=comment.created_at.strftime('%d/%m/%Y %H:%M:%S')%></span></li>
